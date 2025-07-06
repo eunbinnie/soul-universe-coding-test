@@ -2,7 +2,7 @@ import React from 'react';
 
 import LinkButton from '@/components/LinkButton';
 
-import PostList from './posts/components/PostList';
+import PostListSection from './posts/components/PostListSection';
 
 const PostListPage = () => {
   return (
@@ -10,7 +10,7 @@ const PostListPage = () => {
       <div className='mb-5 flex justify-end'>
         <LinkButton href='/posts/new'>글쓰기</LinkButton>
       </div>
-      <PostList />
+      <PostListSection />
     </div>
   );
 };

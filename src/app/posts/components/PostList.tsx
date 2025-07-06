@@ -1,28 +1,31 @@
-'use client';
-
-import React from 'react';
-
 import { usePostStore } from '@/store';
-import { SmilePlus } from 'lucide-react';
+import Link from 'next/link';
 
 const PostList = () => {
   const posts = usePostStore((state) => state.posts);
 
   return (
-    <section>
-      {posts.length > 0 ? (
-        <div></div>
-      ) : (
-        // 등록된 게시글이 없을 경우
-        <div className='mt-20 flex flex-col items-center gap-4'>
-          <SmilePlus />
-          <p className='text-center text-sm'>
-            아직 등록된 게시글이 없습니다.
-            <br />첫 글을 작성해보세요!
-          </p>
-        </div>
-      )}
-    </section>
+    <div>
+      <div className='border-t border-gray-200 px-5 py-2 text-gray-500'>
+        제목
+      </div>
+
+      <ul className='border-t border-gray-200'>
+        {posts.map((post) => (
+          <li
+            key={post.uuid}
+            className='flex items-center justify-between border-b border-gray-200 px-5 py-2'
+          >
+            <Link
+              href={`/posts/${post.uuid}`}
+              className='truncate font-medium text-slate-900'
+            >
+              {post.title}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };
 
