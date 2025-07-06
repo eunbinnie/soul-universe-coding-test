@@ -1,14 +1,28 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { usePostStore } from '@/store';
-import { SmilePlus } from 'lucide-react';
+import { LoaderCircle, SmilePlus } from 'lucide-react';
 
 import PostList from './PostList';
 
 const PostListSection = () => {
   const posts = usePostStore((state) => state.posts);
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    setIsLoading(false);
+  }, []);
+
+  if (isLoading) {
+    return (
+      <section className='mt-20 w-full'>
+        <LoaderCircle className='mx-auto animate-spin' />
+      </section>
+    );
+  }
 
   return (
     <section>
