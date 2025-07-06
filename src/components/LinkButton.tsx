@@ -7,7 +7,14 @@ interface LinkButtonProps {
   children: React.ReactNode;
 }
 
-const LinkButton = ({ children, href }: LinkButtonProps) => {
+/**
+ * LinkButton
+ * 페이지 이동 시 사용하는 링크 컴포넌트
+ *
+ * @param href 이동할 페이지 주소
+ * @param children Link 태그에 표시할 내용
+ */
+const LinkButton = ({ href, children }: LinkButtonProps) => {
   return (
     <Link
       href={href}
