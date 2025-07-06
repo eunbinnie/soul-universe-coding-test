@@ -6,6 +6,8 @@ import { useParams } from 'next/navigation';
 
 import ClientOnly from '@/components/ClientOnly';
 
+import PostDetail from './_components/PostDetail';
+
 const PostDetailPage = () => {
   const params = useParams<{ id: string }>();
 
@@ -14,7 +16,7 @@ const PostDetailPage = () => {
   return (
     <ClientOnly>
       {detailPost ? (
-        <div>게시글 상세</div>
+        <PostDetail post={detailPost} />
       ) : (
         <div className='mt-20 flex flex-col items-center gap-4'>
           <Frown />
