@@ -1,3 +1,5 @@
+import { ToastContainer } from 'react-toastify';
+
 import type { Metadata } from 'next';
 
 import { pretendard } from '@/styles/fonts';
@@ -22,6 +24,7 @@ export default function RootLayout({
         <main className='mx-auto my-5 max-w-screen-lg px-3 sm:my-10 sm:px-4'>
           {children}
         </main>
+        <ToastContainer />
       </body>
     </html>
   );

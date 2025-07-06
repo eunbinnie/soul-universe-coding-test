@@ -1,8 +1,11 @@
 'use client';
 
 import React, { useState } from 'react';
+import { toast } from 'react-toastify';
 
+import { TOAST_OPTIONS } from '@/constants/toast';
 import { usePostStore } from '@/store';
+import { useRouter } from 'next/navigation';
 import { v4 as uuidv4 } from 'uuid';
 
 import type { Post } from '@/types/post.types';
@@ -12,6 +15,7 @@ import Input from '@/components/Input';
 import Textarea from '@/components/Textarea';
 
 const NewPostPage = () => {
+  const router = useRouter();
   const updatePost = usePostStore((state) => state.updatePost);
 
   const [title, setTitle] = useState('');
@@ -30,6 +34,9 @@ const NewPostPage = () => {
     };
 
     updatePost(postData); // 게시글 로컬스토리지에 저장
+
+    toast.success('게시글이 등록되었습니다.', TOAST_OPTIONS);
+    router.push('/');
   };
 
   return (
