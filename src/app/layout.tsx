@@ -1,6 +1,8 @@
-import '@/styles/globals.css';
-
 import type { Metadata } from 'next';
+
+import { pretendard } from '@/styles/fonts';
+
+import '@/styles/globals.css';
 
 export const metadata: Metadata = {
   title: '소울유니버스 과제',
@@ -13,7 +15,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='ko'>
+    <html lang='ko' className={pretendard.className}>
       <body>{children}</body>
     </html>
   );

@@ -13,7 +13,9 @@ const config: Config = {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
       },
-      fontFamily: {},
+      fontFamily: {
+        pretendard: ['var(--font-pretendard)', 'sans-serif'],
+      },
     },
   },
   plugins: [tailwindcssAnimate],
