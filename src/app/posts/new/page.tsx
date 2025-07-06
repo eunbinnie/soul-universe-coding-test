@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 
+import { usePostStore } from '@/store';
 import { v4 as uuidv4 } from 'uuid';
 
 import type { Post } from '@/types/post.types';
@@ -11,6 +12,8 @@ import Input from '@/components/Input';
 import Textarea from '@/components/Textarea';
 
 const NewPostPage = () => {
+  const updatePost = usePostStore((state) => state.updatePost);
+
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
 
@@ -26,7 +29,7 @@ const NewPostPage = () => {
       createdAt: new Date().toISOString(),
     };
 
-    console.log(postData);
+    updatePost(postData); // 게시글 로컬스토리지에 저장
   };
 
   return (
