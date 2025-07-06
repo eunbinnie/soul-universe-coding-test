@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { pretendard } from '@/styles/fonts';
 
 import '@/styles/globals.css';
+import Header from '@/components/common/Header';
 
 export const metadata: Metadata = {
   title: '소울유니버스 과제',
@@ -16,7 +17,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang='ko' className={pretendard.className}>
-      <body>{children}</body>
+      <body>
+        <Header />
+        <main className='mx-auto my-10 max-w-screen-lg px-3 sm:px-4'>
+          {children}
+        </main>
+      </body>
     </html>
   );
 }
