@@ -16,7 +16,7 @@ import Textarea from '@/components/Textarea';
 
 const NewPostPage = () => {
   const router = useRouter();
-  const updatePost = usePostStore((state) => state.updatePost);
+  const updatePost = usePostStore((state) => state.updatePost); // 게시글 추가 함수
 
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
