@@ -2,6 +2,8 @@
 
 import React, { useState } from 'react';
 
+import { usePostStore } from '@/store';
+
 import LinkButton from '@/components/LinkButton';
 import SearchInput from '@/components/SearchInput';
 
@@ -9,10 +11,15 @@ import PostListSection from './posts/_components/PostListSection';
 
 const PostListPage = () => {
   const [keyword, setKeyword] = useState('');
+  const { searchPosts, updateKeyword } = usePostStore((state) => ({
+    searchPosts: state.searchPosts,
+    updateKeyword: state.updateKeyword,
+  }));
 
   const handleSearch: React.FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault();
-    console.log(keyword);
+    updateKeyword(keyword);
+    searchPosts(keyword);
   };
 
   return (

@@ -8,11 +8,19 @@ import ClientOnly from '@/components/ClientOnly';
 import PostList from './PostList';
 
 const PostListSection = () => {
-  const posts = usePostStore((state) => state.posts);
+  const { keyword, posts } = usePostStore((state) => ({
+    keyword: state.keyword,
+    posts: state.posts,
+  }));
 
   return (
     <ClientOnly>
       <section>
+        {keyword !== '' && (
+          <p className='mb-5 text-sm'>
+            <span className='font-bold'>&apos;{keyword}&apos;</span> 검색 결과
+          </p>
+        )}
         {posts.length > 0 ? (
           <PostList />
         ) : (
