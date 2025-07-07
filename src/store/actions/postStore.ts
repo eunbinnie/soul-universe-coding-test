@@ -12,7 +12,7 @@ interface PostStore {
   detailPost: (uuid: string) => Post | undefined; // 게시글 상세 조회 함수
   addComment: (uuid: string, comment: Comment) => void; // 댓글 추가 함수
   updateKeyword: (keyword: string) => void; // 검색 키워드 업데이트 함수
-  searchPosts: (keyword: string) => void; // 게시글 검색 함수
+  searchPosts: () => void; // 게시글 검색 함수
 }
 
 // 게시글 목록을 로컬 스토리지에 저장하는 스토어
@@ -63,10 +63,10 @@ export const usePostStore = create<PostStore>()(
       },
 
       // 게시글 검색
-      searchPosts: (keyword) => {
+      searchPosts: () => {
         set((state) => ({
           searchResults: state.posts.filter((post) =>
-            post.title.includes(keyword),
+            post.title.includes(state.keyword),
           ),
         }));
       },
