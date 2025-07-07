@@ -15,7 +15,7 @@ const PostDetail = ({ post }: PostDetailProps) => {
   return (
     <>
       <DeletePostDialog uuid={uuid} />
-      <article>
+      <article className='mb-12'>
         <h1 className='text-3xl font-bold leading-[1.2] text-slate-800 lg:text-5xl'>
           {title}
         </h1>

@@ -1,5 +1,5 @@
 // 게시글 댓글 타입
-interface Comment {
+export interface Comment {
   uuid: string;
   content: string;
   createdAt: string;

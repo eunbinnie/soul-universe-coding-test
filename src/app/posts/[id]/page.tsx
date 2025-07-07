@@ -6,6 +6,7 @@ import { useParams } from 'next/navigation';
 
 import ClientOnly from '@/components/ClientOnly';
 
+import CommentSection from './_components/CommentSection';
 import PostDetail from './_components/PostDetail';
 
 const PostDetailPage = () => {
@@ -16,7 +17,10 @@ const PostDetailPage = () => {
   return (
     <ClientOnly>
       {detailPost ? (
-        <PostDetail post={detailPost} />
+        <>
+          <PostDetail post={detailPost} />
+          <CommentSection post={detailPost} />
+        </>
       ) : (
         <div className='mt-20 flex flex-col items-center gap-4'>
           <Frown />
