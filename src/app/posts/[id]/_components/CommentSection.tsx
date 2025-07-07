@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { toast } from 'react-toastify';
 
 import { usePostStore } from '@/store';
+import dayjs from 'dayjs';
 import { v4 as uuidv4 } from 'uuid';
 
 import type { Comment, Post } from '@/types/post.types';
@@ -22,6 +23,7 @@ const CommentSection = ({ post }: CommentSectionProps) => {
 
   const [comment, setComment] = useState('');
 
+  // 댓글 남기기 함수
   const handleCommentSubmit = () => {
     const data: Comment = {
       uuid: uuidv4(),
@@ -39,7 +41,8 @@ const CommentSection = ({ post }: CommentSectionProps) => {
       <span className='text-sm font-medium text-zinc-900'>
         댓글 {COMMENTS_LENGTH}
       </span>
-      <div className='mt-4 flex flex-col'>
+      {/* 댓글 남기는 영역 */}
+      <div className='mb-5 mt-4 flex flex-col'>
         <Textarea
           value={comment}
           onChange={(e) => setComment(e.target.value)}
@@ -53,6 +56,21 @@ const CommentSection = ({ post }: CommentSectionProps) => {
         >
           댓글 남기기
         </Button>
+      </div>
+      {/* 댓글 영역 */}
+      <div>
+        {comments?.map((comment) => (
+          <div key={comment.uuid} className='mb-3 rounded-2xl bg-zinc-100 p-5'>
+            <div>
+              <span className='text-xs font-bold text-zinc-900'>
+                {dayjs(comment.createdAt).format('YYYY-MM-DD')}
+              </span>
+            </div>
+            <span className='whitespace-pre text-sm font-medium text-zinc-700'>
+              {comment.content}
+            </span>
+          </div>
+        ))}
       </div>
     </section>
   );

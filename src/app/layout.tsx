@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang='ko' className={pretendard.className}>
       <body>
         <Header />
-        <main className='mx-auto my-5 max-w-screen-lg px-3 sm:my-10 sm:px-4'>
+        <main className='mx-auto my-5 max-w-screen-md px-3 sm:my-10 sm:px-4'>
           {children}
         </main>
         <ToastContainer />
