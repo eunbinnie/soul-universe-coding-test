@@ -1,3 +1,5 @@
+import { forwardRef } from 'react';
+
 import { cn } from '@/lib/utils';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -14,29 +16,37 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
  * @param children 버튼 안에 들어갈 콘텐츠
  * @param className 버튼에 적용할 커스텀 클래스 이름
  */
-const Button = ({
-  type = 'button',
-  variant = 'default',
-  disabled,
-  children,
-  className,
-  ...rest
-}: ButtonProps) => {
-  return (
-    <button
-      type={type}
-      disabled={disabled}
-      className={cn(
-        'h-8 rounded-md bg-black px-3 text-sm font-medium text-white',
-        disabled && 'bg-gray-300',
-        variant === 'outline' && 'border border-black bg-white text-black',
-        className,
-      )}
-      {...rest}
-    >
-      {children}
-    </button>
-  );
-};
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      type = 'button',
+      variant = 'default',
+      disabled,
+      children,
+      className,
+      ...rest
+    },
+    ref,
+  ) => {
+    return (
+      <button
+        ref={ref}
+        type={type}
+        disabled={disabled}
+        className={cn(
+          'h-8 rounded-md bg-black px-3 text-sm font-medium text-white',
+          disabled && 'bg-gray-300',
+          variant === 'outline' && 'border border-black bg-white text-black',
+          className,
+        )}
+        {...rest}
+      >
+        {children}
+      </button>
+    );
+  },
+);
+
+Button.displayName = 'Button';
 
 export default Button;
