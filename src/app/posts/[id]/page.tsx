@@ -1,21 +1,27 @@
 'use client';
 
+import useIsMounted from '@/hooks/useIsMounted';
 import { usePostStore } from '@/store';
 import { Frown } from 'lucide-react';
 import { useParams } from 'next/navigation';
 
-import ClientOnly from '@/components/ClientOnly';
+import Loading from '@/components/Loading';
 
 import CommentSection from './_components/CommentSection';
 import PostDetail from './_components/PostDetail';
 
 const PostDetailPage = () => {
   const params = useParams<{ id: string }>();
+  const isMounted = useIsMounted();
 
   const detailPost = usePostStore((state) => state.detailPost(params.id));
 
+  if (!isMounted) {
+    return <Loading />;
+  }
+
   return (
-    <ClientOnly>
+    <>
       {detailPost ? (
         <>
           <PostDetail post={detailPost} />
@@ -27,7 +33,7 @@ const PostDetailPage = () => {
           <p className='text-center text-sm'>게시글을 찾을 수 없습니다.</p>
         </div>
       )}
-    </ClientOnly>
+    </>
   );
 };
 
