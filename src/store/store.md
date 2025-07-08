@@ -14,4 +14,4 @@ https://zustand-demo.pmnd.rs/
 export const useTestStroe = () => ...
 ```
 
-- 완성된 action 함수들은 index.ts에 exoprt 시킨다.
+- 완성된 action 함수들은 index.ts에 export 시킨다.

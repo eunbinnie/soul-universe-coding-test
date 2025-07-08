@@ -28,11 +28,11 @@ const PostList = () => {
         {postList.map((post) => (
           <li
             key={post.uuid}
-            className='flex items-center justify-between border-b border-gray-200 px-5 py-2'
+            className='flex items-center justify-between border-b border-gray-200 px-5 py-2 hover:bg-gray-50'
           >
             <Link
               href={`/posts/${post.uuid}`}
-              className='truncate font-medium text-slate-900'
+              className='w-full truncate font-medium text-slate-900'
             >
               {post.title}
             </Link>
