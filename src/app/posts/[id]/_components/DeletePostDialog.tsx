@@ -22,11 +22,20 @@ interface DeletePostDialogProps {
 
 const DeletePostDialog = ({ uuid }: DeletePostDialogProps) => {
   const router = useRouter();
-  const deletePost = usePostStore((state) => state.deletePost);
+  const { keyword, deletePost, searchPosts } = usePostStore((state) => ({
+    keyword: state.keyword,
+    deletePost: state.deletePost,
+    searchPosts: state.searchPosts,
+  }));
 
   const handleDeletePost = () => {
     deletePost(uuid);
+    // 검색 키워드가 있으면 검색 결과 다시 불러오기
+    if (keyword) {
+      searchPosts();
+    }
     router.push('/');
+
     toast.success('게시글이 삭제되었습니다.');
   };
 
